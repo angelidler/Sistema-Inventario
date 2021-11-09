@@ -30,7 +30,7 @@ public class LLineas {
             
             miModulo=new DefaultTableModel(null,Titulos);
             
-            CallableStatement cst=c.prepareCall("{ call sp_Buscar_ln (?) }");
+            CallableStatement cst=c.prepareCall("{ call sp_mostrarbuscar_lineas (?) }");
             
             cst.setString(1, MisLineas.getLineas());
            
@@ -38,7 +38,7 @@ public class LLineas {
             
             while (rs.next()) {
                 
-                dtl[0]=rs.getString("idLineas");
+                dtl[0]=rs.getString("IdLineas");
                 dtl[1]=rs.getString("Nombre");
                 miModulo.addRow(dtl);
             }
@@ -51,7 +51,7 @@ public class LLineas {
     public  String InsartarLn(DLineas MisLineas){
       String msj=null;
         try {
-            CallableStatement cst=c.prepareCall("{call sp_insertar_ln(?)}");
+            CallableStatement cst=c.prepareCall("{call sp_insertar_lineas(?)}");
          
              cst.setString(1, MisLineas.getLineas());
              cst.executeUpdate();
@@ -67,7 +67,7 @@ public class LLineas {
      public  String EditarLn(DLineas MisLineas){
       String msj=null;
         try {
-            CallableStatement cst=c.prepareCall("{call sp_editar_ln (?,?)}");
+            CallableStatement cst=c.prepareCall("{call sp_editar_lineas (?,?)}");
             cst.setInt(1, MisLineas.getId());
             cst.setString(2, MisLineas.getLineas());
            
@@ -83,7 +83,7 @@ public class LLineas {
      public  String EliminarLn(DLineas MisLineas){
       String msj=null;
         try {
-            CallableStatement cst=c.prepareCall("{call sp_eliminar_ln (?)}");
+            CallableStatement cst=c.prepareCall("{call sp_eliminar_lineas (?)}");
             cst.setInt(1, MisLineas.getId());
             cst.executeUpdate();
             msj="si";

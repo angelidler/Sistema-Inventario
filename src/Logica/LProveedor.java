@@ -30,7 +30,7 @@ public class LProveedor {
             
             miModulo=new DefaultTableModel(null,Titulos);
             
-            CallableStatement cst=cn.prepareCall("{ call sp_buscar_Prv (?) }");
+            CallableStatement cst=cn.prepareCall("{ call sp_mostrarbuscar_proveedores(?) }");
             
             cst.setString(1, miProveedor.getNombre());
            
@@ -38,10 +38,10 @@ public class LProveedor {
             
             while (rs.next()) {
                 
-                dtl[0]=rs.getString("idProveedor");
-                dtl[1]=rs.getString("Nombre");
+                dtl[0]=rs.getString("IdProveedores");
+                dtl[1]=rs.getString("NombreRS");
                 dtl[2]=rs.getString("Telefono");
-                dtl[3]=rs.getString("domicilio");
+                dtl[3]=rs.getString("Domicilio");
                 miModulo.addRow(dtl);
             }
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class LProveedor {
         String msj=null;
         try {
             
-            CallableStatement cst=cn.prepareCall("{call sp_insertar_Prv(?,?,?)}");
+            CallableStatement cst=cn.prepareCall("{call sp_insertar_proveedores(?,?,?)}");
             
             cst.setString(1, miProveedor.getNombre());
             cst.setString(2, miProveedor.getTelefono());
@@ -78,7 +78,7 @@ public class LProveedor {
         String msj="";
         try {
             
-            CallableStatement cst=cn.prepareCall("{call sp_editar_Prv (?,?,?,?)}");
+            CallableStatement cst=cn.prepareCall("{call sp_editar_proveedores(?,?,?,?)}");
             
             cst.setInt(1, miProveedor.getId());
             cst.setString(2, miProveedor.getNombre());
@@ -87,7 +87,7 @@ public class LProveedor {
             
             cst.executeUpdate();
             
-            
+            msj="si";
         } catch (Exception e) {
             
             msj="no"+e;
@@ -100,7 +100,7 @@ public class LProveedor {
         String msj=null;
         
         try {
-            CallableStatement cst=cn.prepareCall("{call sp_eliminar_Prv (?)}");
+            CallableStatement cst=cn.prepareCall("{call sp_eliminar_proveedores(?)}");
             
             cst.setInt(1, miProveedor.getId());
             

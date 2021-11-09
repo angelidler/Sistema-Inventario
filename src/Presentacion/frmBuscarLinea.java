@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Tecnico
  */
 public class frmBuscarLinea extends javax.swing.JDialog {
+
     private DefaultTableModel miModelo;
+
     /**
      * Creates new form frmBuscarLinea2
      */
@@ -24,24 +26,24 @@ public class frmBuscarLinea extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         BuscarLm("");
-       // miModelo=(DefaultTableModel) tblLineas.getModel();
-        
+        // miModelo=(DefaultTableModel) tblLineas.getModel();
+
         tblLineas.getColumnModel().getColumn(0).setMaxWidth(0);
         tblLineas.getColumnModel().getColumn(0).setMinWidth(0);
         tblLineas.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
-   public void BuscarLm(String Lineas){
-        DefaultTableModel miModelo=null;
-        LLineas ln=new LLineas();
-        DLineas dl=new DLineas();
-        
+
+    public void BuscarLm(String Lineas) {
+        DefaultTableModel miModelo = null;
+        LLineas ln = new LLineas();
+        DLineas dl = new DLineas();
+
         dl.setLineas(Lineas);
-        miModelo=ln.MostLineas(dl);
+        miModelo = ln.MostLineas(dl);
         tblLineas.setModel(miModelo);
-        
-        
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,26 +117,26 @@ public class frmBuscarLinea extends javax.swing.JDialog {
 
     private void tblLineasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLineasMouseClicked
         // TODO add your handling code here:
-       
+
 
     }//GEN-LAST:event_tblLineasMouseClicked
 
     private void tblLineasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLineasMousePressed
         // TODO add your handling code here: DLineas dl=new DLineas();
-         JTable tbl=(JTable) evt.getSource();
-        Point pt= evt.getPoint();
-        int row=tbl.rowAtPoint(pt);
-        
-        if(evt.getClickCount()==2){
-            
-             String id=tblLineas.getValueAt(tblLineas.getSelectedRow(), 0).toString();
-             String Lineas=tblLineas.getValueAt(tblLineas.getSelectedRow(), 1).toString();
-             
-             frmFacturas.setlineas(id,Lineas);
-             this.dispose();
+        JTable tbl = (JTable) evt.getSource();
+        Point pt = evt.getPoint();
+        int row = tbl.rowAtPoint(pt);
+
+        if (evt.getClickCount() == 2) {
+
+            String id = tblLineas.getValueAt(tblLineas.getSelectedRow(), 0).toString();
+            String Lineas = tblLineas.getValueAt(tblLineas.getSelectedRow(), 1).toString();
+
+            frmFacturas.setlineas(id, Lineas);
+            this.dispose();
         }
-        
-        
+
+
     }//GEN-LAST:event_tblLineasMousePressed
 
     /**

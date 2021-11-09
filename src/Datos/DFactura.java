@@ -12,20 +12,20 @@ import java.sql.Date;
  * @author Tecnico
  */
 public class DFactura {
-    
-    private int id, idLinea,idProveedor;
+    private String id;
+    private int  idLinea,idProveedor;
     private Date Fecha;
  public DFactura(){
     
     }
-    public DFactura(int id, int idLinea, int idProveedor, Date Fecha) {
+    public DFactura(String id, int idLinea, int idProveedor, Date Fecha) {
         this.id = id;
         this.idLinea = idLinea;
         this.idProveedor = idProveedor;
         this.Fecha = Fecha;
     }
     
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ public class DFactura {
         return Fecha;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

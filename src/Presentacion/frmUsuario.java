@@ -21,46 +21,49 @@ public class frmUsuario extends javax.swing.JInternalFrame {
      */
     public frmUsuario() {
         initComponents();
-        
+
         txtId.setEnabled(false);
-         limpia();
+        limpia();
         habilitado(true);
         BuscaUS("");
-        
+
     }
-    
-    public void limpia(){
-        
+
+    public void limpia() {
+
         txtId.setText("");
         txtNombre.setText("");
         txtUsuario.setText("");
         txtClave.setText("");
         txtClave2.setText("");
         cmbPaierfil.setSelectedIndex(0);
-    }public void habilitado(boolean btn){
-        
+    }
+
+    public void habilitado(boolean btn) {
+
         txtNombre.setEnabled(!btn);
         txtUsuario.setEnabled(!btn);
         txtClave.setEnabled(!btn);
         txtClave2.setEnabled(!btn);
         cmbPaierfil.setEnabled(!btn);
-        
+
         btnNuevo.setEnabled(btn);
         btnEditar.setEnabled(btn);
         btnGuardar.setEnabled(!btn);
         btnCancelar.setEnabled(!btn);
     }
-    
-    public void BuscaUS(String usuario){
-        
+
+    public void BuscaUS(String usuario) {
+
         DefaultTableModel miModelo;
-        LUsuario lus=new LUsuario();
-        DUsuarios dus=new DUsuarios();
+        LUsuario lus = new LUsuario();
+        DUsuarios dus = new DUsuarios();
         dus.setUsuario(usuario);
-        miModelo=lus.MostUsuario(dus);
+        miModelo = lus.MostUsuario(dus);
         tblUsuario.setModel(miModelo);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -338,93 +341,87 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-        
-         habilitado(false);
+
+        habilitado(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        
-        String msg=null;
-        
-        if(txtId.getText().equals("")){
-        DUsuarios dts=new DUsuarios();
-        LUsuario lgc=new LUsuario();
-        String confClave=new String(txtClave2.getPassword());
-        String clave=new String(txtClave.getPassword());
-        String perfil=(String)cmbPaierfil.getSelectedItem();
-        dts.setNombreUs(txtNombre.getText());
-        dts.setUsuario(txtUsuario.getText());
-        dts.setClaveUs(clave);
-        dts.setPerfil(perfil);
-        
-       msg=lgc.InsartarUs(dts);
+
+        String msg = null;
+
+        if (txtId.getText().equals("")) {
+            DUsuarios dts = new DUsuarios();
+            LUsuario lgc = new LUsuario();
+            String confClave = new String(txtClave2.getPassword());
+            String clave = new String(txtClave.getPassword());
+            String perfil = (String) cmbPaierfil.getSelectedItem();
+            dts.setNombreUs(txtNombre.getText());
+            dts.setUsuario(txtUsuario.getText());
+            dts.setClaveUs(clave);
+            dts.setPerfil(perfil);
+
+            msg = lgc.InsartarUs(dts);
             if (msg == "si") {
                 JOptionPane.showMessageDialog(rootPane, "Usuario Registrado de Forma correcta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
-        DUsuarios dts=new DUsuarios();
-        LUsuario lgc=new LUsuario();
-        
-        String clave=new String(txtClave.getPassword());
-        String perfil=(String)cmbPaierfil.getSelectedItem();
-        dts.setIdUsuario(Integer.parseInt(txtId.getText()));
-        dts.setNombreUs(txtNombre.getText());
-        dts.setUsuario(txtUsuario.getText());
-        dts.setClaveUs(clave);
-        dts.setPerfil(perfil);
-        
-       
-       msg=lgc.EditarUs(dts);
+        } else {
+            DUsuarios dts = new DUsuarios();
+            LUsuario lgc = new LUsuario();
+
+            String clave = new String(txtClave.getPassword());
+            String perfil = (String) cmbPaierfil.getSelectedItem();
+            dts.setIdUsuario(Integer.parseInt(txtId.getText()));
+            dts.setNombreUs(txtNombre.getText());
+            dts.setUsuario(txtUsuario.getText());
+            dts.setClaveUs(clave);
+            dts.setPerfil(perfil);
+
+            msg = lgc.EditarUs(dts);
             if (msg == "si") {
                 JOptionPane.showMessageDialog(rootPane, "Usuario Actualizado de Forma correcta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
             }
-      
-    
-            }
-      if(txtNombre.getText().equals("")){
-          JOptionPane.showMessageDialog(rootPane, "Datos Nombre es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
+
+        }
+        if (txtNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Datos Nombre es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtNombre.requestFocusInWindow();
             return;
-      }
-       if(txtUsuario.getText().equals("")){
-          JOptionPane.showMessageDialog(rootPane, "Datos Usuarios es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Datos Usuarios es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtUsuario.requestFocusInWindow();
             return;
-      }
-               String clave=new String(txtClave.getPassword());
-       if(clave.equals("")){
-          JOptionPane.showMessageDialog(rootPane, "Datos Usuarios es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }
+        String clave = new String(txtClave.getPassword());
+        if (clave.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Datos Usuarios es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtClave.requestFocusInWindow();
             return;
-      }
-               String confClave=new String(txtClave.getPassword());
-       if(confClave.equals("")){
-          JOptionPane.showMessageDialog(rootPane, "Contraseña es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }
+        String confClave = new String(txtClave.getPassword());
+        if (confClave.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Contraseña es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtClave2.requestFocusInWindow();
             return;
-      }if(!clave.equals(confClave)){
-          JOptionPane.showMessageDialog(rootPane, "Las Contraseña no coinciden", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }
+        if (!clave.equals(confClave)) {
+            JOptionPane.showMessageDialog(rootPane, "Las Contraseña no coinciden", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtClave.requestFocusInWindow();
             txtClave.setText("");
             txtClave2.setText("");
             return;
-      }
-       if(cmbPaierfil.getSelectedIndex()==0){
-          JOptionPane.showMessageDialog(rootPane, "Datos Perfil es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
+        }
+        if (cmbPaierfil.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Datos Perfil es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             cmbPaierfil.requestFocusInWindow();
             return;
-      }
-     
-      
-        
-        
-        
-         limpia();
+        }
+        limpia();
         habilitado(true);
         BuscaUS("");
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -438,22 +435,22 @@ public class frmUsuario extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         // TODO add your handling code here: Boton De eliminar
-        if(!txtId.getText().equals("")){
-            DUsuarios dts=new DUsuarios();
-        LUsuario fn=new LUsuario();
-        dts.setIdUsuario(Integer.parseInt(txtId.getText()));
-        
-        String msg=fn.EliminarUs(dts);
-        
-            if(msg.equals("si")){
+        if (!txtId.getText().equals("")) {
+            DUsuarios dts = new DUsuarios();
+            LUsuario fn = new LUsuario();
+            dts.setIdUsuario(Integer.parseInt(txtId.getText()));
+
+            String msg = fn.EliminarUs(dts);
+
+            if (msg.equals("si")) {
                 JOptionPane.showMessageDialog(rootPane, "Usuario Eliminado de Forma correcta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Nose pudo eliminar", "Informacion", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "No ha Seleccionado un Usuario", "Informacion", JOptionPane.QUESTION_MESSAGE);
         }
-        
+
         limpia();
         habilitado(true);
         BuscaUS("");
@@ -461,15 +458,15 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
     private void tblUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblUsuarioMouseClicked
         // TODO add your handling code here:
-        
-        int fila=tblUsuario.getSelectedRow();
+
+        int fila = tblUsuario.getSelectedRow();
         txtId.setText(tblUsuario.getValueAt(fila, 0).toString());
         txtNombre.setText(tblUsuario.getValueAt(fila, 1).toString());
         txtUsuario.setText(tblUsuario.getValueAt(fila, 2).toString());
         txtClave.setText(tblUsuario.getValueAt(fila, 3).toString());
         txtClave2.setText(tblUsuario.getValueAt(fila, 3).toString());
         cmbPaierfil.setSelectedItem(tblUsuario.getValueAt(fila, 4).toString());
-       
+
 
     }//GEN-LAST:event_tblUsuarioMouseClicked
 
@@ -480,8 +477,8 @@ public class frmUsuario extends javax.swing.JInternalFrame {
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
-        
-         BuscaUS(txtBuscar.getText());
+
+        BuscaUS(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarActionPerformed
 
 

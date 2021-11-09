@@ -9,36 +9,67 @@ import Datos.DFactura;
 import Presentacion.frmFacturas;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Types;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Tecnico
  */
 public class LFactura {
-    
-    Coneccion cn=new Coneccion();
-        Connection c=cn.getConection();
-        
-    public  String InsartarFc(DFactura miFactura){
-      String msj=null;
-      frmFacturas mi=new frmFacturas();
+
+    Coneccion cn = new Coneccion();
+    Connection c = cn.getConection();
+
+    public DefaultTableModel BuscarAlamacen() {
+
+        DefaultTableModel miModulo = null;
+
         try {
-            CallableStatement cst=c.prepareCall("{call sp_inserter_facturas(?,?,?,?)}");
-         
-             cst.setInt(1, miFactura.getIdLinea());
-             cst.setInt(2, miFactura.getIdProveedor());
-             cst.setDate(3, miFactura.getFecha());
-             cst.registerOutParameter(4, Types.INTEGER);
-             cst.executeUpdate();
-             int id=cst.getInt(4);
-             mi.idfact(id);
-             msj="si";
-            
+
+            String Titulos[] = {"ID", "PROVEEDOR", "LINEA", "FECHA"};
+
+            String dts[] = new String[4];
+
+            miModulo = new DefaultTableModel(null, Titulos);
+            CallableStatement cst = c.prepareCall("{call sp_mostrar_facturas()}");
+            ResultSet rs = cst.executeQuery();
+
+            while (rs.next()) {
+
+                dts[0] = rs.getString("f.IdFacturas");
+                dts[1] = rs.getString("p.NombreRS");
+                dts[2] = rs.getString("l.Nombre");
+                dts[3] = rs.getString("f.FechaEntrada");
+
+                miModulo.addRow(dts);
+            }
         } catch (Exception e) {
-            
-             msj="error"+e;
+            e.printStackTrace();
         }
-      return msj;
+
+        return miModulo;
+    }
+
+    public int InsartarFc(DFactura miFactura) {
+        int idres = 0;
+        frmFacturas mi = new frmFacturas();
+        try {
+            CallableStatement cst = c.prepareCall("{call sp_insertar_factura(?,?,?,?)}");
+
+            cst.setInt(1, miFactura.getIdLinea());
+            cst.setInt(2, miFactura.getIdProveedor());
+            cst.setDate(3, miFactura.getFecha());
+            cst.registerOutParameter(4, Types.INTEGER);
+            cst.executeUpdate();
+            idres = cst.getInt(4);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            idres = 0;
+        }
+
+        return idres;
     }
 }

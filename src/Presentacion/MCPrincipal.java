@@ -86,6 +86,8 @@ public class MCPrincipal extends javax.swing.JFrame {
         itemProveedor = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Inventario");
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
@@ -99,6 +101,11 @@ public class MCPrincipal extends javax.swing.JFrame {
         btnRecibos.setText("Recibos");
 
         btnAlamcen.setText("Alamacen");
+        btnAlamcen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlamcenActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Usuario:");
 
@@ -148,7 +155,7 @@ public class MCPrincipal extends javax.swing.JFrame {
                 .addComponent(btnRecibos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAlamcen, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 259, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lbUsuario))
@@ -166,7 +173,7 @@ public class MCPrincipal extends javax.swing.JFrame {
         dpnEscritorio.setLayout(dpnEscritorioLayout);
         dpnEscritorioLayout.setHorizontalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 764, Short.MAX_VALUE)
+            .addGap(0, 854, Short.MAX_VALUE)
         );
         dpnEscritorioLayout.setVerticalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,6 +265,10 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void itemFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturaActionPerformed
         // TODO add your handling code here:
+        
+        frmdtsFactura fdf=new frmdtsFactura();
+        dpnEscritorio.add(fdf);
+        fdf.show();
     }//GEN-LAST:event_itemFacturaActionPerformed
 
     private void ItemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemUsuarioActionPerformed
@@ -288,6 +299,14 @@ public class MCPrincipal extends javax.swing.JFrame {
         dpnEscritorio.add(fct);
         fct.show();
     }//GEN-LAST:event_btnFacturaActionPerformed
+
+    private void btnAlamcenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlamcenActionPerformed
+        // TODO add your handling code here:
+        
+        frmInventario fiv=new frmInventario();
+        dpnEscritorio.add(fiv);
+        fiv.show();
+    }//GEN-LAST:event_btnAlamcenActionPerformed
 
     /**
      * @param args the command line arguments

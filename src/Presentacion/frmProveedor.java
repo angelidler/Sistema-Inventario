@@ -17,53 +17,56 @@ import javax.swing.table.DefaultTableModel;
 public class frmProveedor extends javax.swing.JInternalFrame {
 
     /**
-     * -------------------Construtores de los Datos y Logica---------------------
+     * -------------------Construtores de los Datos y
+     * Logica---------------------
      */
-     DProveedor dp=new DProveedor();
-     LProveedor lp=new LProveedor();
-     /**
-     * -------------------Construtores de los Datos y Logica---------------------
+    DProveedor dp = new DProveedor();
+    LProveedor lp = new LProveedor();
+
+    /**
+     * -------------------Construtores de los Datos y
+     * Logica---------------------
      */
     public frmProveedor() {
         initComponents();
-        
+
         Limpiar();
         Habilitar(true);
         txtId.setEnabled(false);
         BuscarPv("");
     }
-    
-//    ----------------------------Areas de Metodos------------------------------
 
-    public void Limpiar(){
-        
+//    ----------------------------Areas de Metodos------------------------------
+    public void Limpiar() {
+
         txtNombre.setText("");
         txtDomicilio.setText("");
         txtTelefono.setText("");
         txtId.setText("");
     }
-    
-    public  void Habilitar(boolean btn){
-        
+
+    public void Habilitar(boolean btn) {
+
         txtNombre.setEnabled(!btn);
         txtDomicilio.setEnabled(!btn);
         txtTelefono.setEnabled(!btn);
-        
+
         btnNuevo.setEnabled(btn);
         btnEditar.setEnabled(btn);
         btnCancelar.setEnabled(!btn);
         btnGuardar.setEnabled(!btn);
-        
+
     }
-    public void BuscarPv(String pv){
-        
+
+    public void BuscarPv(String pv) {
+
         DefaultTableModel tbl;
         dp.setNombre(pv);
-        tbl=lp.MostProveedor(dp);
+        tbl = lp.MostProveedor(dp);
         tblProveedor.setModel(tbl);
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,12 +83,12 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
         txtDomicilio = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtTelefono = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
@@ -141,11 +144,7 @@ public class frmProveedor extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -153,20 +152,25 @@ public class frmProveedor extends javax.swing.JInternalFrame {
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombre)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
                             .addGap(18, 18, 18)
-                            .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnGuardar)
-                                .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnCancelar)
-                                .addComponent(btnEditar)))))
+                            .addComponent(txtTelefono))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnGuardar)
+                                    .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCancelar)
+                                    .addComponent(btnEditar))))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -180,10 +184,10 @@ public class frmProveedor extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,6 +206,11 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Consultas"));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,7 +289,7 @@ public class frmProveedor extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -289,59 +298,59 @@ public class frmProveedor extends javax.swing.JInternalFrame {
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
         BuscarPv("");
-        
+
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        
+
         Limpiar();
         Habilitar(false);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
-         Habilitar(false);
+        Habilitar(false);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-      
-        if(txtNombre.getText().equals("") || txtTelefono.getText().equals("") || txtDomicilio.getText().equals("")){
+
+        if (txtNombre.getText().equals("") || txtTelefono.getText().equals("") || txtDomicilio.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe Completar los Formularios deben de estar llenos", "Informacion", JOptionPane.QUESTION_MESSAGE);
-           txtNombre.requestFocusInWindow();
-           return;
+            txtNombre.requestFocusInWindow();
+            return;
         }
-        
-        String msj=null;
-        if(txtId.getText().equals("")){
-           
+
+        String msj = null;
+        if (txtId.getText().equals("")) {
+
+            dp.setNombre(txtNombre.getText());
+            dp.setTelefono(txtDomicilio.getText());
+            dp.setDomicilio(txtTelefono.getText());
+
+            msj = lp.InsertarPrv(dp);
+
+            if (msj.equals("si")) {
+                JOptionPane.showMessageDialog(null, "Los Datos Guardados Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No se pudo Guardar los Datos", "Informacion", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            dp.setId(Integer.parseInt(txtId.getText()));
             dp.setNombre(txtNombre.getText());
             dp.setTelefono(txtTelefono.getText());
             dp.setDomicilio(txtDomicilio.getText());
-            
-           msj= lp.InsertarPrv(dp);
-           
-            if(msj=="si"){
+
+            msj = lp.EditarPrv(dp);
+            if (msj.equals("si")) {
                 JOptionPane.showMessageDialog(null, "Los Datos Guardados Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "No se pudo Guardar los Datos", "Informacion", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
-            dp.setNombre(txtNombre.getText());
-            dp.setTelefono(txtTelefono.getText());
-            dp.setDomicilio(txtDomicilio.getText());
-            
-           msj= lp.EditarPrv(dp);
-            if(msj=="si"){
-                JOptionPane.showMessageDialog(null, "Los Datos Guardados Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(rootPane, "No se pudo Guardar los Datos", "Informacion", JOptionPane.ERROR_MESSAGE);
-            }
-            
+
         }
-        
-        
+
         Limpiar();
         Habilitar(true);
         BuscarPv("");
@@ -349,40 +358,45 @@ public class frmProveedor extends javax.swing.JInternalFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-         Limpiar();
+        Limpiar();
         Habilitar(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void tblProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProveedorMouseClicked
         // TODO add your handling code here:
-        
-        int fila=tblProveedor.getSelectedRow();
+
+        int fila = tblProveedor.getSelectedRow();
         txtId.setText(tblProveedor.getValueAt(fila, 0).toString());
         txtNombre.setText(tblProveedor.getValueAt(fila, 1).toString());
         txtTelefono.setText(tblProveedor.getValueAt(fila, 2).toString());
         txtDomicilio.setText(tblProveedor.getValueAt(fila, 3).toString());
-        
+
     }//GEN-LAST:event_tblProveedorMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        String msj=null;
-        if(!txtId.getText().equals("")){
-            
-           dp.setId(Integer.parseInt(txtId.getText()));
-            
-           msj= lp.EliminarPrv(dp);
-           
-           if(msj=="si"){
-               JOptionPane.showMessageDialog(null, "Los Datos se Eliminaron Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-           }else{
-               JOptionPane.showMessageDialog(null, "Los Datos no se Eliminaron", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-           }
-               
+        String msj = null;
+        if (!txtId.getText().equals("")) {
+
+            dp.setId(Integer.parseInt(txtId.getText()));
+
+            msj = lp.EliminarPrv(dp);
+
+            if (msj == "si") {
+                JOptionPane.showMessageDialog(null, "Los Datos se Eliminaron Correctamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Los Datos no se Eliminaron", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+
         }
         Limpiar();
         BuscarPv("");
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        BuscarPv(txtBuscar.getText());
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
