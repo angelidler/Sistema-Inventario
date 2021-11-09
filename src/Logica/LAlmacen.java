@@ -68,7 +68,7 @@ public class LAlmacen {
                 dts[0] = rs.getString("IdAlmacen");
                 dts[1] = rs.getString("Descripcion");
                 dts[2] = "1";
-                dts[3] = rs.getString("UMedida");;
+                dts[3] = rs.getString("UMedida");
                 dts[4] = rs.getString("PUnitario");
                 dts[5] = rs.getString("PUnitario");
 

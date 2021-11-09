@@ -13,8 +13,10 @@ import java.sql.*;
 
 public class LPrincipal {
     public static void main(String[] args) {
+        
         Coneccion cn=new Coneccion();
         Connection c;
         c=cn.getConection();
+      
     }
 }

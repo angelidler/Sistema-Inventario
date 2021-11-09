@@ -136,19 +136,19 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 
         boolean res = false;
         DecimalFormat ft = new DecimalFormat("####.00");
-        for (int i = 0; i < tblFactura.getRowCount(); i++) {
 
+        for (int i = 0; i < tblFactura.getRowCount(); i++) {
             String Codigo = tblFactura.getValueAt(i, 0).toString();
             if (Codigo.equals(texto)) {
-                                
+
                 int cantidad = Integer.parseInt(tblFactura.getValueAt(i, 2).toString());
                 double PrecioU = Double.parseDouble(tblFactura.getValueAt(i, 4).toString());
 
                 int totalcantidad = cantidad + 1;
                 tblFactura.setValueAt(totalcantidad, i, 2);
-                
-                double precioParcia = totalcantidad * PrecioU;
-                tblFactura.setValueAt(ft.format(precioParcia), i, 5);
+
+                double precioParcia = PrecioU * totalcantidad;
+                tblFactura.setValueAt(precioParcia, i, 5);
 
                 res = true;
             }
@@ -162,11 +162,11 @@ public class frmFacturas extends javax.swing.JInternalFrame {
     public void sumarTotal() {
 
         DecimalFormat ft = new DecimalFormat("####.00");
-        double totalParcial = 0, totalfinal = 0;
+        double totalfinal = 0;
         for (int i = 0; i < tblFactura.getRowCount(); i++) {
-
-            totalParcial = Double.parseDouble(tblFactura.getValueAt(i, 4).toString());
-            totalfinal += totalParcial;
+            double PrecioU = Double.parseDouble(tblFactura.getValueAt(i, 5).toString());
+            totalfinal = totalfinal + PrecioU;
+            System.out.println(totalfinal);
             txtTotal.setText(ft.format(totalfinal));
 
         }
@@ -185,7 +185,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
         } else {
             Registro[0] = txtEntrar.getText();
             Registro[1] = "";
-            Registro[2] = "";
+            Registro[2] = "1";
             Registro[3] = "";
             Registro[4] = "0.00";
             Registro[5] = "0.00";
@@ -193,7 +193,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
             tblFactura.setModel(miModelo);
 
         }
-        // sumar();
+
     }
 
     /**
@@ -249,11 +249,6 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                 "Codigo", "Descriccion", "Cantidad", "U/Medida", "P/Unitario", "Total"
             }
         ));
-        tblFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblFacturaMousePressed(evt);
-            }
-        });
         tblFactura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tblFacturaKeyPressed(evt);
@@ -464,7 +459,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 
             int id = lf.InsartarFc(df);
             System.out.print(id);
-
+            
             if (id > 0) {
 
                 int fila = tblFactura.getRowCount();
@@ -523,36 +518,25 @@ public class frmFacturas extends javax.swing.JInternalFrame {
             boolean b = EstaTabla(txtEntrar.getText());
 
             if (b == false) {
-                
+
                 MostrarBuscar(txtEntrar.getText());
             }
-            
-            txtEntrar.setText("");
             sumarTotal();
+            txtEntrar.setText("");
 
         }
     }//GEN-LAST:event_txtEntrarKeyPressed
 
-    private void tblFacturaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturaMousePressed
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_tblFacturaMousePressed
-
     private void tblFacturaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblFacturaKeyPressed
         // TODO add your handling code here: allar el error 
-        
+
         DecimalFormat ft = new DecimalFormat("####.00");
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            
+
             for (int i = 0; i < tblFactura.getRowCount(); i++) {
-                
+
                 int cantidad = Integer.parseInt(tblFactura.getValueAt(i, 2).toString());
                 double preciounitario = Double.parseDouble(tblFactura.getValueAt(i, 4).toString());
-               
-                int totalcantidad = cantidad + 1;
-                tblFactura.setValueAt(totalcantidad, i, 2);
-
                 double totalParcial = cantidad * preciounitario;
                 tblFactura.setValueAt(ft.format(totalParcial), i, 5);
 
