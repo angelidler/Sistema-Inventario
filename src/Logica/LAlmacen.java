@@ -54,6 +54,8 @@ public class LAlmacen {
     }
 
     public String[] MostrarAlamcen(DAlmacen miAlmacen) {
+
+//         a.IdAlmacen, a.Descripcion, a.UMedida, a.PUnitario,  l.Nombre
         String dts[] = null;
 
         try {
@@ -79,29 +81,78 @@ public class LAlmacen {
         }
         return dts;
     }
-    
-     public  String InsertarProducto(DAlmacen miProducto){
-      String msj=null;
+
+    public String[] MostrarProductoRec(DAlmacen miAlmacen) {
+
+//         a.IdAlmacen, a.Descripcion, a.UMedida, a.PUnitario,  l.Nombre
+        String dts[] = null;
+
         try {
-            CallableStatement cst=c.prepareCall("{call sp_insertar_productos(?,?,?,?,?,?)}");
-         
-             cst.setString(1, miProducto.getIdAlamcen());
-             cst.setInt(2, miProducto.getIdLinea());
-             cst.setString(3, miProducto.getDescripcion());
-             cst.setInt(4, miProducto.getStock());
-             cst.setDouble(5, miProducto.getPrecioU());
-             cst.setString(6, miProducto.getUMedida());
-             
-             
-             
-             cst.executeUpdate();
-           
-             msj="si";
-            
+            dts = new String[8];
+            CallableStatement cst = c.prepareCall("{call sp_mostrarproducto_recibo(?)}");
+
+            cst.setString(1, miAlmacen.getIdAlamcen());
+
+            ResultSet rs = cst.executeQuery();
+
+            while (rs.next()) {
+                dts[0] = rs.getString("a.IdAlmacen");
+                dts[1] = rs.getString("a.Descripcion");
+                dts[2] = "1";
+                dts[3] = rs.getString("a.UMedida");
+                dts[4] = rs.getString("a.PUnitario");
+                dts[5] = rs.getString("l.IdLineas");
+                dts[6] = rs.getString("l.Nombre");
+                dts[7] = rs.getString("a.PUnitario");
+
+            }
         } catch (Exception e) {
-            
-             msj="error"+e;
+
+            e.printStackTrace();
         }
-      return msj;
+        return dts;
     }
+
+    public String InsertarProducto(DAlmacen miProducto) {
+        String msj = null;
+        try {
+            CallableStatement cst = c.prepareCall("{call sp_insertar_productos(?,?,?,?,?,?)}");
+
+            cst.setString(1, miProducto.getIdAlamcen());
+            cst.setInt(2, miProducto.getIdLinea());
+            cst.setString(3, miProducto.getDescripcion());
+            cst.setInt(4, miProducto.getStock());
+            cst.setDouble(5, miProducto.getPrecioU());
+            cst.setString(6, miProducto.getUMedida());
+
+            cst.executeUpdate();
+
+            msj = "si";
+
+        } catch (Exception e) {
+
+            msj = "error" + e;
+        }
+        return msj;
+    }
+
+    public String disminuirProducto(DAlmacen miProducto) {
+        String msj = null;
+        try {
+            CallableStatement cst = c.prepareCall("{call sp_disminuirs_tock(?,?)}");
+
+            cst.setString(1, miProducto.getIdAlamcen());
+            cst.setInt(2, miProducto.getStock());
+
+            cst.executeUpdate();
+
+            msj = "si";
+
+        } catch (Exception e) {
+
+            msj = "error" + e;
+        }
+        return msj;
+    }
+
 }

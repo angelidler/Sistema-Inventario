@@ -15,6 +15,7 @@ import Logica.LFactura;
 import java.awt.Event;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import javax.swing.JFrame;
@@ -133,9 +134,8 @@ public class frmFacturas extends javax.swing.JInternalFrame {
     }
 
     private boolean EstaTabla(String texto) {
-
-        boolean res = false;
         DecimalFormat ft = new DecimalFormat("####.00");
+        boolean res = false;
 
         for (int i = 0; i < tblFactura.getRowCount(); i++) {
             String Codigo = tblFactura.getValueAt(i, 0).toString();
@@ -148,6 +148,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                 tblFactura.setValueAt(totalcantidad, i, 2);
 
                 double precioParcia = PrecioU * totalcantidad;
+
                 tblFactura.setValueAt(precioParcia, i, 5);
 
                 res = true;
@@ -159,14 +160,13 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 
     }
 
-    public void sumarTotal() {
+    private void sumarTotal() {
 
         DecimalFormat ft = new DecimalFormat("####.00");
         double totalfinal = 0;
         for (int i = 0; i < tblFactura.getRowCount(); i++) {
             double PrecioU = Double.parseDouble(tblFactura.getValueAt(i, 5).toString());
             totalfinal = totalfinal + PrecioU;
-            System.out.println(totalfinal);
             txtTotal.setText(ft.format(totalfinal));
 
         }
@@ -459,7 +459,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 
             int id = lf.InsartarFc(df);
             System.out.print(id);
-            
+
             if (id > 0) {
 
                 int fila = tblFactura.getRowCount();

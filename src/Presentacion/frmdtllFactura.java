@@ -7,6 +7,7 @@ package Presentacion;
 
 import Datos.DDFacturas;
 import Logica.LDFactura;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +26,7 @@ public class frmdtllFactura extends javax.swing.JDialog {
         initComponents();
 //        setDatos("", "", "", "");
         habitilar(false);
-
+        sumarTotal();
     }
 
     public void setDatos(String id, String Proveedor, String Linea, String Fecha) {
@@ -45,6 +46,7 @@ public class frmdtllFactura extends javax.swing.JDialog {
         txtLinea.setEnabled(txt);
         txtFecha.setEnabled(txt);
         txtTotal.setEnabled(txt);
+        tblFactura.setEnabled(txt);
 
     }
 
@@ -56,7 +58,19 @@ public class frmdtllFactura extends javax.swing.JDialog {
         ddf.setIdFactura(id);
         miModelo = ldf.BucarFactura(ddf);
         tblFactura.setModel(miModelo);
+        sumarTotal();
     }
+     public void sumarTotal() {
+
+        DecimalFormat ft = new DecimalFormat("####.00");
+        double totalfinal = 0;
+        for (int i = 0; i < tblFactura.getRowCount(); i++) {
+            double PrecioU = Double.parseDouble(tblFactura.getValueAt(i, 5).toString());
+            totalfinal = totalfinal + PrecioU;
+            txtTotal.setText(ft.format(totalfinal));
+
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,25 +132,20 @@ public class frmdtllFactura extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jLabel3))
-                                                .addGap(35, 35, 35)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txtLinea, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                                                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtProveedor)))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(108, 108, 108)
-                                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(419, 419, 419))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtLinea, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtProveedor))
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(418, 418, 418))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5)

@@ -87,7 +87,6 @@ public class MCPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Inventario");
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
@@ -99,6 +98,11 @@ public class MCPrincipal extends javax.swing.JFrame {
         });
 
         btnRecibos.setText("Recibos");
+        btnRecibos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecibosActionPerformed(evt);
+            }
+        });
 
         btnAlamcen.setText("Alamacen");
         btnAlamcen.addActionListener(new java.awt.event.ActionListener() {
@@ -307,6 +311,14 @@ public class MCPrincipal extends javax.swing.JFrame {
         dpnEscritorio.add(fiv);
         fiv.show();
     }//GEN-LAST:event_btnAlamcenActionPerformed
+
+    private void btnRecibosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecibosActionPerformed
+        // TODO add your handling code here:
+    
+        frmRecibos fiv=new frmRecibos();
+        dpnEscritorio.add(fiv);
+        fiv.show();
+    }//GEN-LAST:event_btnRecibosActionPerformed
 
     /**
      * @param args the command line arguments
