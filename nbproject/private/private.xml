@@ -12,9 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Presentacion/frmFacturas.java</file>
-            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Presentacion/frmInventario.java</file>
-            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Logica/LAlmacen.java</file>
+            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Presentacion/MCPrincipal.java</file>
+            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Logica/LUsuario.java</file>
+            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Presentacion/frmLogin.java</file>
+            <file>file:/C:/Users/Tecnico/Documents/NetBeansProjects/SistemaRegistro/src/Presentacion/frmRecibos.java</file>
         </group>
     </open-files>
 </project-private>

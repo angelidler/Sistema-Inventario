@@ -148,8 +148,9 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                 tblFactura.setValueAt(totalcantidad, i, 2);
 
                 double precioParcia = PrecioU * totalcantidad;
-
-                tblFactura.setValueAt(precioParcia, i, 5);
+                
+                tblFactura.setValueAt(ft.format(precioParcia).replace(",", "."), i, 5);
+                
 
                 res = true;
             }
@@ -538,6 +539,8 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                 int cantidad = Integer.parseInt(tblFactura.getValueAt(i, 2).toString());
                 double preciounitario = Double.parseDouble(tblFactura.getValueAt(i, 4).toString());
                 double totalParcial = cantidad * preciounitario;
+
+//                tblFactura.setValueAt(totalParcial, i, 5);
                 tblFactura.setValueAt(ft.format(totalParcial), i, 5);
 
             }

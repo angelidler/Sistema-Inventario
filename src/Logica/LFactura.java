@@ -5,6 +5,7 @@
  */
 package Logica;
 
+import Datos.DAlmacen;
 import Datos.DFactura;
 import Presentacion.frmFacturas;
 import java.sql.CallableStatement;
@@ -22,7 +23,7 @@ public class LFactura {
     Coneccion cn = new Coneccion();
     Connection c = cn.getConection();
 
-    public DefaultTableModel BuscarAlamacen() {
+    public DefaultTableModel MostrarAlmacen() {
 
         DefaultTableModel miModulo = null;
 
@@ -51,7 +52,38 @@ public class LFactura {
 
         return miModulo;
     }
+public DefaultTableModel BuscarAlamacen(DFactura miFactura) {
 
+        DefaultTableModel miModulo = null;
+
+        try {
+
+            String Titulos[] = {"ID", "PROVEEDOR", "LINEA", "FECHA"};
+
+            String dts[] = new String[4];
+
+            miModulo = new DefaultTableModel(null, Titulos);
+            CallableStatement cst = c.prepareCall("{call sp_mostrarbuscar_facturas(?)}");
+            
+            cst.setInt(1, Integer.parseInt(miFactura.getId()));
+            
+            ResultSet rs = cst.executeQuery();
+
+            while (rs.next()) {
+
+                dts[0] = rs.getString("f.IdFacturas");
+                dts[1] = rs.getString("p.NombreRS");
+                dts[2] = rs.getString("l.Nombre");
+                dts[3] = rs.getString("f.FechaEntrada");
+
+                miModulo.addRow(dts);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return miModulo;
+    }
     public int InsartarFc(DFactura miFactura) {
         int idres = 0;
         frmFacturas mi = new frmFacturas();
@@ -66,8 +98,10 @@ public class LFactura {
             idres = cst.getInt(4);
 
         } catch (Exception e) {
+            
             e.printStackTrace();
             idres = 0;
+            
         }
 
         return idres;

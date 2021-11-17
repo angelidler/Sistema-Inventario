@@ -71,4 +71,45 @@ public class LRecibo {
         }
         return dts;
     }
+     public DefaultTableModel BuscarRecibos(DRecibo miRecibo) {
+
+        DefaultTableModel miModulo = null;
+
+        try {
+
+            String Titulos[] = {"ID",  "FECHA", "ENTREGA","RECIBE"};
+
+            String dts[] = new String[4];
+
+            miModulo = new DefaultTableModel(null, Titulos);
+                    
+            CallableStatement cst = c.prepareCall("{call sp_mostrarbuscar_recibos(?)}");
+            
+            cst.setInt(1, miRecibo.getIdRecibo());
+            
+            ResultSet rs = cst.executeQuery();
+
+            while (rs.next()) {
+
+                dts[0] = rs.getString("IdRecibo");
+                dts[1] = rs.getString("FechaSalida");
+                dts[2] = rs.getString("EntregaPersn");
+                dts[3] = rs.getString("RecibePersn");
+                
+
+                miModulo.addRow(dts);
+                
+                
+                
+            }
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+            
+            
+            
+        }
+
+        return miModulo;
+    }
 }

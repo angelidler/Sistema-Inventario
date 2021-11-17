@@ -99,4 +99,31 @@ public class LUsuario {
         }
         return msj;
     }
+
+    public String setPerfil(DUsuarios us) {
+ 
+        String Perfil="";
+        
+        try{
+            CallableStatement cst = c.prepareCall("{ call sp_valida_usuario(?,?)}");
+           
+            
+            cst.setString(1, us.getUsuario());
+            cst.setString(2, us.getClaveUs());
+            
+            ResultSet rs = cst.executeQuery();
+           
+            if(rs.first()){
+                
+                Perfil= rs.getString("Perfil");
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return Perfil;
+    }
 }

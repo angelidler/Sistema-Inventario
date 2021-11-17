@@ -26,34 +26,36 @@ public class frmLineas extends javax.swing.JInternalFrame {
         txtId.setEnabled(false);
         BuscaLn("");
     }
-    public void limpia(){
-        
+
+    public void limpia() {
+
         txtId.setText("");
         txtLineas.setText("");
-       
-    }public void habilitar(boolean btn){
-        
-       txtLineas.setEnabled(!btn);
-        
-        
+
+    }
+
+    public void habilitar(boolean btn) {
+
+        txtLineas.setEnabled(!btn);
+
         btnNuevo.setEnabled(btn);
         btnEditar.setEnabled(btn);
         btnGuardar.setEnabled(!btn);
         btnCancelar.setEnabled(!btn);
-       
-        
+
     }
-    
-      public void BuscaLn(String Linea){
-        
+
+    public void BuscaLn(String Linea) {
+
         DefaultTableModel miModelo;
-        LLineas lln=new LLineas();
-        DLineas dln=new DLineas();
+        LLineas lln = new LLineas();
+        DLineas dln = new DLineas();
         dln.setLineas(Linea);
-        miModelo=lln.MostLineas(dln);
+        miModelo = lln.MostLineas(dln);
         tblLineas.setModel(miModelo);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,7 +243,7 @@ public class frmLineas extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,51 +266,48 @@ public class frmLineas extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-       String msj=null;
+        String msj = null;
 //        Este "if se Usa para Guaradar la informacion"----------------------------------------------------------------------*
-       
-            if(txtLineas.getText().equals("")){
+
+        if (txtLineas.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "El Campo Linea es Obligatorio", "Mensaje", JOptionPane.WARNING_MESSAGE);
             txtLineas.requestFocusInWindow();
             return;
-             }
-            if(txtId.getText().equals("")){
-           DLineas dtl=new DLineas();
-           LLineas lgl=new LLineas();
-           
-           
-           dtl.setLineas(txtLineas.getText());
-           msj=lgl.InsartarLn(dtl);
-           
-           if(msj=="si"){
-               JOptionPane.showMessageDialog(null, "El Item Se guardo exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-           }else{
-               JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
-           }
-       }
-//        Este Else se usa para Editar la informacion y esta en el mismo Boton Guardar-----------------------------------------*
-        else{
-            DLineas dtl=new DLineas();
-           LLineas lgl=new LLineas();
-           
-           dtl.setLineas(txtLineas.getText());
-           
-            msj=lgl.EditarLn(dtl);
-            
-             if(msj=="si"){
-               JOptionPane.showMessageDialog(null, "El Item Se Actualizo ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-           }else{
-               JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error al actualizar", "Informacion", JOptionPane.ERROR_MESSAGE);
-           }
+        }
+        if (txtId.getText().equals("")) {
+            DLineas dtl = new DLineas();
+            LLineas lgl = new LLineas();
+
+            dtl.setLineas(txtLineas.getText());
+            msj = lgl.InsartarLn(dtl);
+
+            if (msj == "si") {
+                JOptionPane.showMessageDialog(null, "El Item Se guardo exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
+            }
+        } //        Este Else se usa para Editar la informacion y esta en el mismo Boton Guardar-----------------------------------------*
+        else {
+            DLineas dtl = new DLineas();
+            LLineas lgl = new LLineas();
+
+            dtl.setLineas(txtLineas.getText());
+
+            msj = lgl.EditarLn(dtl);
+
+            if (msj == "si") {
+                JOptionPane.showMessageDialog(null, "El Item Se Actualizo ", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error al actualizar", "Informacion", JOptionPane.ERROR_MESSAGE);
+            }
         }
 //        Este If es Para Verificar que las casillas no esten Vacias-----------------------------------------------------*
-        
-        
+
         limpia();
         habilitar(true);
         BuscaLn("");
-        
-        
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -319,40 +318,40 @@ public class frmLineas extends javax.swing.JInternalFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        
-          if(!txtId.getText().equals("")){
-             DLineas dtl=new DLineas();
-           LLineas lgl=new LLineas();
-        dtl.setId(Integer.parseInt(txtId.getText()));
-        
-        String msg=lgl.EliminarLn(dtl);
-        
-            if(msg.equals("si")){
+
+        if (!txtId.getText().equals("")) {
+            DLineas dtl = new DLineas();
+            LLineas lgl = new LLineas();
+            dtl.setId(Integer.parseInt(txtId.getText()));
+
+            String msg = lgl.EliminarLn(dtl);
+
+            if (msg.equals("si")) {
                 JOptionPane.showMessageDialog(rootPane, "Linea Eliminada de Forma correcta", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Nose pudo eliminar", "Informacion", JOptionPane.ERROR_MESSAGE);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "No ha Seleccionado una Linea", "Informacion", JOptionPane.QUESTION_MESSAGE);
         }
-        
+
         limpia();
         BuscaLn("");
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void tblLineasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLineasMouseClicked
         // TODO add your handling code here:
-        
-        int fila=tblLineas.getSelectedRow();
+
+        int fila = tblLineas.getSelectedRow();
         txtId.setText(tblLineas.getValueAt(fila, 0).toString());
         txtLineas.setText(tblLineas.getValueAt(fila, 1).toString());
-        
+
     }//GEN-LAST:event_tblLineasMouseClicked
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        
-               BuscaLn(txtBuscar.getText());
+
+        BuscaLn(txtBuscar.getText());
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 

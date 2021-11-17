@@ -25,32 +25,31 @@ public class MCPrincipal extends javax.swing.JFrame {
         initComponents();
         
         time.start();
-  
-    }
-   
         
-      
-       
-   Timer time=new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Calendar cal=new GregorianCalendar();
-                int hh, mm, ss, dia, mes, an; 
-                hh=cal.get(Calendar.HOUR_OF_DAY);
-                ss=cal.get(Calendar.SECOND);
-                mm=cal.get(Calendar.MINUTE);
-                 
-                dia=cal.get(Calendar.DAY_OF_MONTH);
-                mes=cal.get(Calendar.MONTH);
-                an=cal.get(Calendar.YEAR);
-                
-             
-              
-               lbhora.setText(hh+":"+mm+":"+ss);
-               lbfecha.setText(dia+"/"+(+mes+1)+"/"+an);
-            }
-              
-        });
+    }
+    
+    Timer time = new Timer(1000, new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+            Calendar calendario = new GregorianCalendar();
+            
+            int ss, mm, hh, dd, ms, an;
+            
+            ss = calendario.get(Calendar.SECOND);
+            mm = calendario.get(Calendar.MINUTE);
+            hh = calendario.get(Calendar.HOUR_OF_DAY);
+            
+            dd = calendario.get(Calendar.DAY_OF_MONTH);
+            ms = calendario.get(Calendar.MONTH);
+            an = calendario.get(Calendar.YEAR);
+            
+            lbhora.setText(hh + ":" + mm + ":" + ss);
+            lbfecha.setText(dd + "/" + (ms+1) + "/" + an);
+        }
+        
+    });
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,6 +197,11 @@ public class MCPrincipal extends javax.swing.JFrame {
         jMenu1.add(itemFactura);
 
         itemRecibo.setText("Detalle de Recibo");
+        itemRecibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemReciboActionPerformed(evt);
+            }
+        });
         jMenu1.add(itemRecibo);
 
         jMenuBar1.add(jMenu1);
@@ -270,7 +274,7 @@ public class MCPrincipal extends javax.swing.JFrame {
     private void itemFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturaActionPerformed
         // TODO add your handling code here:
         
-        frmdtsFactura fdf=new frmdtsFactura();
+        frmdtsFactura fdf = new frmdtsFactura();
         dpnEscritorio.add(fdf);
         fdf.show();
     }//GEN-LAST:event_itemFacturaActionPerformed
@@ -278,28 +282,28 @@ public class MCPrincipal extends javax.swing.JFrame {
     private void ItemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemUsuarioActionPerformed
         // TODO add your handling code here:
         
-        frmUsuario us=new frmUsuario();
+        frmUsuario us = new frmUsuario();
         dpnEscritorio.add(us);
         us.show();
     }//GEN-LAST:event_ItemUsuarioActionPerformed
 
     private void itemLineaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemLineaActionPerformed
         // TODO add your handling code here:
-         frmLineas ln=new frmLineas();
+        frmLineas ln = new frmLineas();
         dpnEscritorio.add(ln);
         ln.show();
     }//GEN-LAST:event_itemLineaActionPerformed
 
     private void itemProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemProveedorActionPerformed
         // TODO add your handling code here:
-        frmProveedor pv=new frmProveedor();
+        frmProveedor pv = new frmProveedor();
         dpnEscritorio.add(pv);
         pv.show();
     }//GEN-LAST:event_itemProveedorActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
         // TODO add your handling code here:
-         frmFacturas fct=new frmFacturas();
+        frmFacturas fct = new frmFacturas();
         dpnEscritorio.add(fct);
         fct.show();
     }//GEN-LAST:event_btnFacturaActionPerformed
@@ -307,18 +311,27 @@ public class MCPrincipal extends javax.swing.JFrame {
     private void btnAlamcenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlamcenActionPerformed
         // TODO add your handling code here:
         
-        frmInventario fiv=new frmInventario();
+        frmInventario fiv = new frmInventario();
         dpnEscritorio.add(fiv);
         fiv.show();
     }//GEN-LAST:event_btnAlamcenActionPerformed
 
     private void btnRecibosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecibosActionPerformed
         // TODO add your handling code here:
-    
-        frmRecibos fiv=new frmRecibos();
+        
+        frmRecibos fiv = new frmRecibos();
         dpnEscritorio.add(fiv);
+        fiv.setDatosUs(lbUsuario.getText());
         fiv.show();
     }//GEN-LAST:event_btnRecibosActionPerformed
+
+    private void itemReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemReciboActionPerformed
+        // TODO add your handling code here:
+        
+        frmDetaRecibo fr = new frmDetaRecibo();
+        dpnEscritorio.add(fr);
+        fr.show();
+    }//GEN-LAST:event_itemReciboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,4 +394,16 @@ public class MCPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbfecha;
     private javax.swing.JLabel lbhora;
     // End of variables declaration//GEN-END:variables
+
+    void setDatos(String usuario, String Perfil) {
+  
+        lbUsuario.setText(usuario);
+        
+        if(Perfil.equals("Usuario")){
+           ItemUsuario.setVisible(false);
+           ItemIformacion.setVisible(false);
+            
+        }
+    
+    }
 }

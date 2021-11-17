@@ -40,6 +40,10 @@ public class frmRecibos extends javax.swing.JInternalFrame {
         miModelo = (DefaultTableModel) tblRecibo.getModel();
 
     }
+     public void setDatosUs(String Entrega) {
+        
+        txtPEntrega.setText(Entrega);
+      }
 
     public void Limpiar() {
 
@@ -103,7 +107,7 @@ public class frmRecibos extends javax.swing.JInternalFrame {
 
                 double precioParcia = PrecioU * totalcantidad;
 
-                tblRecibo.setValueAt(precioParcia, i, 7);
+                tblRecibo.setValueAt(ft.format(precioParcia).replace(",", "."), i, 7);
 
                 res = true;
             }
@@ -146,6 +150,11 @@ public class frmRecibos extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRecibo = new javax.swing.JTable();
+        txtPEntrega = new javax.swing.JTextField();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setText("Fecha:");
 
@@ -203,6 +212,8 @@ public class frmRecibos extends javax.swing.JInternalFrame {
             tblRecibo.getColumnModel().getColumn(5).setMaxWidth(0);
         }
 
+        txtPEntrega.setEditable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -211,40 +222,50 @@ public class frmRecibos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnGuardar)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnCancelar)
-                        .addGap(189, 189, 189)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(txtPersona))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                .addComponent(btnNuevo)
+                                .addGap(30, 30, 30)
+                                .addComponent(btnGuardar)
                                 .addGap(31, 31, 31)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                                    .addComponent(txtPersona)))
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(298, 298, 298)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                                .addComponent(btnCancelar)
+                                .addGap(189, 189, 189)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(306, 306, 306)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtPEntrega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 27, Short.MAX_VALUE)
+                .addGap(18, 31, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +311,7 @@ public class frmRecibos extends javax.swing.JInternalFrame {
         LRecibo lr = new LRecibo();
 
         dr.setPersonaRecibe(txtPersona.getText());
-        dr.setPersonaEntrega("mientras");
+        dr.setPersonaEntrega(txtPEntrega.getText());
         Calendar cl;
 
         cl = txtFecha.getCalendar();
@@ -321,18 +342,28 @@ public class frmRecibos extends javax.swing.JInternalFrame {
                 ddr.setTotal(tot);
 
                 String msj = ldr.insertarDDRecibo(ddr);
-                
-                if(msj.equals("si")){
-                    JOptionPane.showMessageDialog(rootPane, "bien");
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "no");
-                }
-                
-            }
 
-        }
+                if (msj.equals("si")) {
+                    DAlmacen da = new DAlmacen();
+                    LAlmacen la = new LAlmacen();
+
+                    da.setIdAlamcen(idpro);
+                    da.setStock(cant);
+
+                    la.disminuirProducto(da);
+                }
+
+            }
+                JOptionPane.showMessageDialog(null, "El Item Se guardo exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
+            }
+    
+        
         habilita(false);
         Limpiar();
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -384,7 +415,7 @@ public class frmRecibos extends javax.swing.JInternalFrame {
                 int cantidad = Integer.parseInt(tblRecibo.getValueAt(i, 2).toString());
                 double preciounitario = Double.parseDouble(tblRecibo.getValueAt(i, 4).toString());
                 double totalParcial = cantidad * preciounitario;
-                tblRecibo.setValueAt(totalParcial, i, 6);
+                tblRecibo.setValueAt(totalParcial, i, 7);
 
             }
             sumarTotal();
@@ -403,7 +434,10 @@ public class frmRecibos extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblRecibo;
     private javax.swing.JTextField txtBuscar;
     private com.toedter.calendar.JDateChooser txtFecha;
+    private javax.swing.JTextField txtPEntrega;
     private javax.swing.JTextField txtPersona;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
+
+   
 }
