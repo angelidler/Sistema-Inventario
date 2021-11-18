@@ -6,6 +6,7 @@
 package Logica;
 
 import Datos.DRecibo;
+import Presentacion.MCPrincipal;
 import Presentacion.frmLogin;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -24,6 +25,19 @@ import javax.swing.table.DefaultTableModel;
 public class LPrincipal {
 
     public static void main(String[] args) {
+       try{
+           
+           for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+               if("Nimbus".equals(info.getName())){
+             //      javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                   break;
+               }
+               
+           }
+       }catch(ClassCastException ex){
+         //  java.util.logging.Logger.getLogger(MCPrincipal.class.getName()).log(java.util.logging.Logger.class();
+       }
+        
         frmLogin lg=new frmLogin();
         
         lg.setVisible(true);

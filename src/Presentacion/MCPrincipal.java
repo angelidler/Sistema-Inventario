@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 /**
@@ -17,7 +18,7 @@ import javax.swing.Timer;
  * @author Tecnico
  */
 public class MCPrincipal extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form MCPrincipal
      */
@@ -27,6 +28,7 @@ public class MCPrincipal extends javax.swing.JFrame {
         time.start();
         
     }
+    
     
     Timer time = new Timer(1000, new ActionListener() {
         @Override
@@ -49,6 +51,17 @@ public class MCPrincipal extends javax.swing.JFrame {
         }
         
     });
+    public  void setDatos(String usuario, String Perfil) {
+  
+        lbUsuario.setText(usuario);
+        
+        if(Perfil.equals("Usuario")){
+           ItemUsuario.setVisible(false);
+           ItemIformacion.setVisible(false);
+            
+        }
+    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,15 +90,17 @@ public class MCPrincipal extends javax.swing.JFrame {
         itemRecibo = new javax.swing.JMenuItem();
         MenuBD = new javax.swing.JMenu();
         ItemRespaldar = new javax.swing.JMenuItem();
-        ItemRestaurar = new javax.swing.JMenuItem();
         MenuHeramientas = new javax.swing.JMenu();
         ItemUsuario = new javax.swing.JMenuItem();
         ItemIformacion = new javax.swing.JMenuItem();
         itemLinea = new javax.swing.JMenuItem();
         itemProveedor = new javax.swing.JMenuItem();
+        itemSesion = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema Inventario");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sistema Inventario A&M");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones"));
 
@@ -116,12 +131,6 @@ public class MCPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha");
 
-        lbUsuario.setText("jLabel4");
-
-        lbhora.setText("jLabel4");
-
-        lbfecha.setText("jLabel4");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,7 +155,7 @@ public class MCPrincipal extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbfecha)))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,7 +185,7 @@ public class MCPrincipal extends javax.swing.JFrame {
         dpnEscritorio.setLayout(dpnEscritorioLayout);
         dpnEscritorioLayout.setHorizontalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGap(0, 873, Short.MAX_VALUE)
         );
         dpnEscritorioLayout.setVerticalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,11 +217,13 @@ public class MCPrincipal extends javax.swing.JFrame {
 
         MenuBD.setText("Base de Datos");
 
-        ItemRespaldar.setText("Respaldar");
+        ItemRespaldar.setText("Respadar/Restaurar");
+        ItemRespaldar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemRespaldarActionPerformed(evt);
+            }
+        });
         MenuBD.add(ItemRespaldar);
-
-        ItemRestaurar.setText("Restaurar");
-        MenuBD.add(ItemRestaurar);
 
         jMenuBar1.add(MenuBD);
 
@@ -246,6 +257,18 @@ public class MCPrincipal extends javax.swing.JFrame {
         MenuHeramientas.add(itemProveedor);
 
         jMenuBar1.add(MenuHeramientas);
+
+        itemSesion.setText("Usuario");
+
+        jMenuItem1.setText("Salir");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        itemSesion.add(jMenuItem1);
+
+        jMenuBar1.add(itemSesion);
 
         setJMenuBar(jMenuBar1);
 
@@ -333,6 +356,24 @@ public class MCPrincipal extends javax.swing.JFrame {
         fr.show();
     }//GEN-LAST:event_itemReciboActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        
+         
+        frmLogin  lg=new frmLogin();
+        this.dispose();    
+        lg.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void ItemRespaldarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemRespaldarActionPerformed
+        // TODO add your handling code here:
+        
+        frmRespaldarRestaura fr = new frmRespaldarRestaura();
+        dpnEscritorio.add(fr);
+        fr.show();
+        
+    }//GEN-LAST:event_ItemRespaldarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,7 +412,6 @@ public class MCPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem ItemIformacion;
     private javax.swing.JMenuItem ItemRespaldar;
-    private javax.swing.JMenuItem ItemRestaurar;
     private javax.swing.JMenuItem ItemUsuario;
     private javax.swing.JMenu MenuBD;
     private javax.swing.JMenu MenuHeramientas;
@@ -384,26 +424,19 @@ public class MCPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemProveedor;
     private javax.swing.JMenuItem itemRecibo;
     private javax.swing.JMenuItem itemReporte;
+    private javax.swing.JMenu itemSesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbUsuario;
     private javax.swing.JLabel lbfecha;
     private javax.swing.JLabel lbhora;
     // End of variables declaration//GEN-END:variables
 
-    void setDatos(String usuario, String Perfil) {
   
-        lbUsuario.setText(usuario);
-        
-        if(Perfil.equals("Usuario")){
-           ItemUsuario.setVisible(false);
-           ItemIformacion.setVisible(false);
-            
-        }
-    
-    }
+     
 }

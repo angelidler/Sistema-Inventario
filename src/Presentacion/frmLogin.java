@@ -165,7 +165,7 @@ public class frmLogin extends javax.swing.JFrame {
         us.setUsuario(usuario);
         us.setClaveUs(pass);
         String Perfil = ul.setPerfil(us);
-        System.out.println(Perfil);
+        
         if (Perfil.equals("")) {
 
             JOptionPane.showMessageDialog(null, "Este usuario no se encuentra en el sistemar consulte con el administrador", "Informacion", JOptionPane.INFORMATION_MESSAGE);
@@ -177,6 +177,7 @@ public class frmLogin extends javax.swing.JFrame {
             principal.setExtendedState(JFrame.MAXIMIZED_BOTH);
             principal.setVisible(true);
             principal.setDatos(usuario, Perfil);
+            this.dispose();
         }
 
     }//GEN-LAST:event_btnEntrarActionPerformed

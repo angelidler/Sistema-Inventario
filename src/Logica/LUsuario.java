@@ -40,7 +40,7 @@ public class LUsuario {
                 dts[0] = rs.getString("IdUsuarios");
                 dts[1] = rs.getString("Nombre");
                 dts[2] = rs.getString("Usuario");
-                dts[3] = rs.getString("Clave");
+                dts[3] = "******";
                 dts[4] = rs.getString("Perfil");
 
                 miModulo.addRow(dts);
