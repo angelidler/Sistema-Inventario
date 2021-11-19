@@ -7,6 +7,9 @@ package Presentacion;
 
 import Datos.DProveedor;
 import Logica.LProveedor;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,9 +37,40 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         Habilitar(true);
         txtId.setEnabled(false);
         BuscarPv("");
+        imagenesBtn();
     }
 
+    
+    
 //    ----------------------------Areas de Metodos------------------------------
+    
+     public void imagenesBtn() {
+
+        ImageIcon Guardar = new ImageIcon("src/Imagen/salvar.png");
+        Icon iconog = new ImageIcon(Guardar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnGuardar.setIcon(iconog);
+        
+        ImageIcon Nuevo = new ImageIcon("src/Imagen/archivo-nuevo.png");
+        Icon iconon = new ImageIcon(Nuevo.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnNuevo.setIcon(iconon);
+        
+        ImageIcon Cancelar = new ImageIcon("src/Imagen/prohibicion.png");
+        Icon iconoc = new ImageIcon(Cancelar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnCancelar.setIcon(iconoc);
+        
+        ImageIcon Editar = new ImageIcon("src/Imagen/editar.png");
+        Icon iconoed = new ImageIcon(Editar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnEditar.setIcon(iconoed);
+        
+        ImageIcon Buscar = new ImageIcon("src/Imagen/consultante.png");
+        Icon iconob = new ImageIcon(Buscar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnBuscar.setIcon(iconob);
+        
+        ImageIcon Eliminar = new ImageIcon("src/Imagen/eliminar.png");
+        Icon iconoe = new ImageIcon(Eliminar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnEliminar.setIcon(iconoe);
+
+    }
     public void Limpiar() {
 
         txtNombre.setText("");
@@ -285,11 +319,11 @@ public class frmProveedor extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();

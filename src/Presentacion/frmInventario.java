@@ -4,12 +4,17 @@
  * and open the template in the editor.
  */
 package Presentacion;
+
 import Datos.DAlmacen;
 import Logica.LAlmacen;
+import Logica.MarcaAgua;
 import java.awt.Color;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 //import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Font;
 import javax.swing.JFileChooser;
@@ -23,6 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
  *
  * @author Tecnico
@@ -34,11 +40,19 @@ public class frmInventario extends javax.swing.JInternalFrame {
      */
     public frmInventario() {
         initComponents();
-        
+        imagenesBtn();
         BuscaLn("");
+        MarcaAgua txt = new MarcaAgua("Codigo Producto", txtBuscar);
     }
-    
-    
+
+    public void imagenesBtn() {
+
+        ImageIcon reporte = new ImageIcon("src/Imagen/seo.png");
+        Icon iconog = new ImageIcon(reporte.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnReporte.setIcon(iconog);
+
+    }
+
     public void BuscaLn(String id) {
 
         DefaultTableModel miModelo;
@@ -164,9 +178,9 @@ public class frmInventario extends javax.swing.JInternalFrame {
 
             Font fontcabecera = libroInventario.createFont();
             fontcabecera.setBold(true);
-            
-            CellStyle cabecera=libroInventario.createCellStyle();
-            
+
+            CellStyle cabecera = libroInventario.createCellStyle();
+
             cabecera.setBorderBottom(BorderStyle.THIN);
             cabecera.setBorderLeft(BorderStyle.THIN);
             cabecera.setBorderRight(BorderStyle.THIN);
@@ -174,13 +188,13 @@ public class frmInventario extends javax.swing.JInternalFrame {
             cabecera.setFillForegroundColor(IndexedColors.BLUE.getIndex());
             cabecera.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cabecera.setFont(fontcabecera);
-         
-            CellStyle contenido2=libroInventario.createCellStyle();
+
+            CellStyle contenido2 = libroInventario.createCellStyle();
             contenido2.setBorderBottom(BorderStyle.THIN);
             contenido2.setBorderLeft(BorderStyle.THIN);
             contenido2.setBorderRight(BorderStyle.THIN);
             contenido2.setBorderTop(BorderStyle.THIN);
-            
+
             XSSFRow titulo = hojaInventario.createRow(0);
 
             for (int i = 0; i < titulos.length; i++) {
@@ -198,17 +212,16 @@ public class frmInventario extends javax.swing.JInternalFrame {
 
                     XSSFCell celda = contenido.createCell(j);
                     celda.setCellValue(tblInvetario.getValueAt(i, j).toString());
-                    
+
                     celda.setCellStyle(contenido2);
 
                 }
             }
 
             //            for (int i = 0; i < tblInvetario.getRowCount(); i++) {
-                //                hojaInventario.autoSizeColumn(i);
-                //
-                //            }
-
+            //                hojaInventario.autoSizeColumn(i);
+            //
+            //            }
             hojaInventario.autoSizeColumn(0);
             hojaInventario.autoSizeColumn(1);
             hojaInventario.autoSizeColumn(2);

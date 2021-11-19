@@ -8,10 +8,13 @@ package Presentacion;
 import Datos.DDRecibo;
 import Logica.LDRecibo;
 import Logica.LFactura;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +47,16 @@ public class frmReciboDet extends javax.swing.JDialog {
 
         BuscarDFactura();
         Edita(false);
+        
+        imagenesBtn();
+    }
+    
+     public void imagenesBtn() {
+
+        ImageIcon mifactura = new ImageIcon("src/Imagen/reporte-de-recibo.png");
+        Icon iconof = new ImageIcon(mifactura.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnExportar.setIcon(iconof);
+
     }
 
     public void BuscarDFactura() {

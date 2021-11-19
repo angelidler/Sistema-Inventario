@@ -106,10 +106,12 @@ public class frmRespaldarRestaura extends javax.swing.JInternalFrame {
         if (dt == JFileChooser.APPROVE_OPTION) {
 
             String ubicacion = bd.getSelectedFile().getAbsolutePath();
+            String ruta=ubicacion+".sql";
+            
             try {
                 Process p = Runtime.getRuntime().exec("http://192.168.0.231/phpmyadmin/index.php?token=ec7ab6726dfe1b9e7a0554910e0216cd#PMAURL-12:db_structure.php?db=dbalmacen&table=&server=1&target=&token=ec7ab6726dfe1b9e7a0554910e0216cd"+"-u "+ user + "-p"+pass+" --routines -B"+db);
                 InputStream is= p.getInputStream();
-                FileOutputStream fo=new FileOutputStream(ubicacion);
+                FileOutputStream fo=new FileOutputStream(ruta);
                 
                 byte[] buffer =new byte[1000];
                 int leido=is.read();
@@ -134,10 +136,11 @@ public class frmRespaldarRestaura extends javax.swing.JInternalFrame {
 
         if (dt == JFileChooser.APPROVE_OPTION) {
               String ubicacion = bd.getSelectedFile().getAbsolutePath();
+              String ruta=ubicacion+".sql";
             try {
-                Process p = Runtime.getRuntime().exec(ubicacion+"-u "+ user + "-p"+pass+" --routines -B"+db);
+                Process p = Runtime.getRuntime().exec(ruta+"-u "+ user + "-p"+pass+" --routines -B"+db);
                 OutputStream is= p.getOutputStream();
-                FileInputStream fo=new FileInputStream(ubicacion);
+                FileInputStream fo=new FileInputStream(ruta);
                 
                 byte[] buffer =new byte[1000];
                 int leido=fo.read();

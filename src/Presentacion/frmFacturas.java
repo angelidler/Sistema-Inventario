@@ -12,12 +12,16 @@ import Datos.DLineas;
 import Logica.LAlmacen;
 import Logica.LDFactura;
 import Logica.LFactura;
+import Logica.MarcaAgua;
 import java.awt.Event;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -40,6 +44,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 
         txtTotal.setEditable(false);
         txtid.setEnabled(false);
+        MarcaAgua txt=new MarcaAgua("Codigo Producto", txtEntrar);
 // ----------------- Codigo de tabla para dar tamaño y ejecucion ---------------
         miModelo = (DefaultTableModel) tblFactura.getModel();
 
@@ -64,7 +69,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
 // ----------------- Codigo de tabla para dar tamaño y ejecucion ---------------
         habilitar(true);
         Limpiar();
-
+        imagenesBtn();
     }
 
     public static void setlineas(String id, String Lineas) {
@@ -196,6 +201,22 @@ public class frmFacturas extends javax.swing.JInternalFrame {
         }
 
     }
+    
+      public void imagenesBtn() {
+
+        ImageIcon Guardar = new ImageIcon("src/Imagen/salvar.png");
+        Icon iconog = new ImageIcon(Guardar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnGuardar.setIcon(iconog);
+        
+        ImageIcon Nuevo = new ImageIcon("src/Imagen/archivo-nuevo.png");
+        Icon iconon = new ImageIcon(Nuevo.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnNuevo.setIcon(iconon);
+        
+        ImageIcon Cancelar = new ImageIcon("src/Imagen/prohibicion.png");
+        Icon iconoc = new ImageIcon(Cancelar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnCancelar.setIcon(iconoc);
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,6 +300,11 @@ public class frmFacturas extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnProveedor.setText("...");
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -336,15 +362,17 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCancelar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(19, 19, 19)
+                                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -384,7 +412,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(440, Short.MAX_VALUE)
+                .addContainerGap(457, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -399,9 +427,7 @@ public class frmFacturas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -547,6 +573,15 @@ public class frmFacturas extends javax.swing.JInternalFrame {
             sumarTotal();
         }
     }//GEN-LAST:event_tblFacturaKeyPressed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        Limpiar();
+        alGuardar(true);
+        
+        txtProveedor.setEnabled(false);
+        txtLinea.setEnabled(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,10 +11,13 @@ import Datos.DRecibo;
 import Logica.LAlmacen;
 import Logica.LDRecibo;
 import Logica.LRecibo;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,12 +41,29 @@ public class frmRecibos extends javax.swing.JInternalFrame {
 
         txtTotal.setEditable(false);
         miModelo = (DefaultTableModel) tblRecibo.getModel();
+        imagenesBtn();
+    }
+
+    public void imagenesBtn() {
+
+        ImageIcon Guardar = new ImageIcon("src/Imagen/salvar.png");
+        Icon iconog = new ImageIcon(Guardar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnGuardar.setIcon(iconog);
+
+        ImageIcon Nuevo = new ImageIcon("src/Imagen/archivo-nuevo.png");
+        Icon iconon = new ImageIcon(Nuevo.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnNuevo.setIcon(iconon);
+
+        ImageIcon Cancelar = new ImageIcon("src/Imagen/prohibicion.png");
+        Icon iconoc = new ImageIcon(Cancelar.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnCancelar.setIcon(iconoc);
 
     }
-     public void setDatosUs(String Entrega) {
-        
+
+    public void setDatosUs(String Entrega) {
+
         txtPEntrega.setText(Entrega);
-      }
+    }
 
     public void Limpiar() {
 
@@ -354,13 +374,12 @@ public class frmRecibos extends javax.swing.JInternalFrame {
                 }
 
             }
-                JOptionPane.showMessageDialog(null, "El Item Se guardo exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El Item Se guardo exitosamente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
-            }
-    
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Ah Ocurrido un Error", "Informacion", JOptionPane.ERROR_MESSAGE);
+        }
+
         habilita(false);
         Limpiar();
 
@@ -439,5 +458,4 @@ public class frmRecibos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 
-   
 }

@@ -11,9 +11,13 @@ import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import Datos.DRecibo;
 import Logica.LRecibo;
+import Logica.MarcaAgua;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.BorderStyle;
@@ -39,7 +43,9 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
         initComponents();
         
         BuscarDRecibo();
-     
+        
+        imagenesBtn();
+     MarcaAgua txt=new MarcaAgua("Buscar Recibo", txtBuscar);
     }
     
     public void BuscarDRecibo() {
@@ -59,7 +65,13 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
         miModelo = lf.BuscarRecibos(ddr);
         tblRecibo.setModel(miModelo);
     }
+   public void imagenesBtn() {
 
+        ImageIcon mifactura = new ImageIcon("src/Imagen/reporte-de-recibo.png");
+        Icon iconof = new ImageIcon(mifactura.getImage().getScaledInstance(35, 35, Image.SCALE_DEFAULT));
+        btnReporte.setIcon(iconof);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +85,7 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         tblRecibo = new javax.swing.JTable();
         txtBuscar = new javax.swing.JTextField();
-        txtReporte = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -102,10 +114,10 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
             }
         });
 
-        txtReporte.setText("Reporte de Recibo");
-        txtReporte.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setText("Reporte de Recibo");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtReporteActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
@@ -122,7 +134,7 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 11, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtReporte)
+                            .addComponent(btnReporte)
                             .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -134,7 +146,7 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtReporte)
+                .addComponent(btnReporte)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -193,7 +205,7 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtBuscarKeyPressed
 
-    private void txtReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReporteActionPerformed
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         // TODO add your handling code here:
         
         JFileChooser seleccionar = new JFileChooser();
@@ -279,14 +291,14 @@ public class frmDetaRecibo extends javax.swing.JInternalFrame {
                 e.printStackTrace();
             }
         }
-    }//GEN-LAST:event_txtReporteActionPerformed
+    }//GEN-LAST:event_btnReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReporte;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable tblRecibo;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JButton txtReporte;
     // End of variables declaration//GEN-END:variables
 }

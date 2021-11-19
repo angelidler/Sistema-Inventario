@@ -6,10 +6,14 @@
 package Presentacion;
 
 import Logica.FechaHora;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -18,50 +22,129 @@ import javax.swing.Timer;
  * @author Tecnico
  */
 public class MCPrincipal extends javax.swing.JFrame {
- 
+
     /**
      * Creates new form MCPrincipal
      */
     public MCPrincipal() {
         initComponents();
-        
+
         time.start();
-        
+
+        imagenesBtn();
+        imagenesItem();
+        imagenMenu();
     }
-    
-    
+
+    public void imagenesBtn() {
+
+        ImageIcon mifactura = new ImageIcon("src/Imagen/factura.png");
+        Icon iconof = new ImageIcon(mifactura.getImage().getScaledInstance(52, 60, Image.SCALE_DEFAULT));
+        btnFactura.setIcon(iconof);
+
+        ImageIcon miRecibo = new ImageIcon("src/Imagen/recibo.png");
+        Icon iconor = new ImageIcon(miRecibo.getImage().getScaledInstance(52, 60, Image.SCALE_DEFAULT));
+        btnRecibos.setIcon(iconor);
+
+        ImageIcon miAlmacen = new ImageIcon("src/Imagen/almacen.png");
+        Icon iconoa = new ImageIcon(miAlmacen.getImage().getScaledInstance(50, 60, Image.SCALE_DEFAULT));
+        btnAlamcen.setIcon(iconoa);
+
+    }
+
+    public void imagenesItem() {
+
+        ImageIcon miusuario = new ImageIcon("src/Imagen/usuario.png");
+        Icon iconou = new ImageIcon(miusuario.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        ItemUsuario.setIcon(iconou);
+
+        ImageIcon milinea = new ImageIcon("src/Imagen/las-compras-en-linea.png");
+        Icon iconol = new ImageIcon(milinea.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemLinea.setIcon(iconol);
+
+        ImageIcon miInfo = new ImageIcon("src/Imagen/expediente.png");
+        Icon iconoi = new ImageIcon(miInfo.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        ItemIformacion.setIcon(iconoi);
+
+        ImageIcon miProv = new ImageIcon("src/Imagen/proveedor.png");
+        Icon iconop = new ImageIcon(miProv.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemProveedor.setIcon(iconop);
+
+        ImageIcon miBD = new ImageIcon("src/Imagen/bases-de-datos.png");
+        Icon iconobd = new ImageIcon(miBD.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        ItemRespaldar.setIcon(iconobd);
+
+        ImageIcon mirf = new ImageIcon("src/Imagen/reporte-de-factura.png");
+        Icon iconorf = new ImageIcon(mirf.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemFactura.setIcon(iconorf);
+
+        ImageIcon miRecibo = new ImageIcon("src/Imagen/reporte-de-recibo.png");
+        Icon iconors = new ImageIcon(miRecibo.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemRecibo.setIcon(iconors);
+
+        ImageIcon miReporte = new ImageIcon("src/Imagen/listas-de-verificacion.png");
+        Icon iconorp = new ImageIcon(miReporte.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemReporte.setIcon(iconorp);
+        
+        ImageIcon misalir = new ImageIcon("src/Imagen/cerrar-sesion.png");
+        Icon iconosl = new ImageIcon(misalir.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        itemSalir.setIcon(iconosl);
+
+
+    }
+
+    public void imagenMenu() {
+
+        ImageIcon menubd = new ImageIcon("src/Imagen/transferencia-de-datos.png");
+        Icon iconobd = new ImageIcon(menubd.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        MenuBD.setIcon(iconobd);
+
+        ImageIcon menuconsulta = new ImageIcon("src/Imagen/seo.png");
+        Icon iconoc = new ImageIcon(menuconsulta.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        menuConsulta.setIcon(iconoc);
+
+        ImageIcon menuherramienta = new ImageIcon("src/Imagen/transferencia-de-datos.png");
+        Icon iconohr = new ImageIcon(menuherramienta.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        menuHerramienta.setIcon(iconohr);
+
+//        ImageIcon menusesion = new ImageIcon("src/Imagen/transferencia-de-datos.png");
+//        Icon iconoss = new ImageIcon(menusesion.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+//        MenuBD.setIcon(iconoss);
+
+    }
+
     Timer time = new Timer(1000, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            
+
             Calendar calendario = new GregorianCalendar();
-            
+
             int ss, mm, hh, dd, ms, an;
-            
+
             ss = calendario.get(Calendar.SECOND);
             mm = calendario.get(Calendar.MINUTE);
             hh = calendario.get(Calendar.HOUR_OF_DAY);
-            
+
             dd = calendario.get(Calendar.DAY_OF_MONTH);
             ms = calendario.get(Calendar.MONTH);
             an = calendario.get(Calendar.YEAR);
-            
+
             lbhora.setText(hh + ":" + mm + ":" + ss);
-            lbfecha.setText(dd + "/" + (ms+1) + "/" + an);
+            lbfecha.setText(dd + "/" + (ms + 1) + "/" + an);
         }
-        
+
     });
-    public  void setDatos(String usuario, String Perfil) {
-  
+
+    public void setDatos(String usuario, String Perfil) {
+
         lbUsuario.setText(usuario);
-        
-        if(Perfil.equals("Usuario")){
-           ItemUsuario.setVisible(false);
-           ItemIformacion.setVisible(false);
-            
+
+        if (Perfil.equals("Usuario")) {
+            ItemUsuario.setVisible(false);
+            ItemIformacion.setVisible(false);
+
         }
     }
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,21 +167,21 @@ public class MCPrincipal extends javax.swing.JFrame {
         lbfecha = new javax.swing.JLabel();
         dpnEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuConsulta = new javax.swing.JMenu();
         itemReporte = new javax.swing.JMenuItem();
         itemFactura = new javax.swing.JMenuItem();
         itemRecibo = new javax.swing.JMenuItem();
         MenuBD = new javax.swing.JMenu();
         ItemRespaldar = new javax.swing.JMenuItem();
-        MenuHeramientas = new javax.swing.JMenu();
+        menuHerramienta = new javax.swing.JMenu();
         ItemUsuario = new javax.swing.JMenuItem();
         ItemIformacion = new javax.swing.JMenuItem();
         itemLinea = new javax.swing.JMenuItem();
         itemProveedor = new javax.swing.JMenuItem();
-        itemSesion = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuSesion = new javax.swing.JMenu();
+        itemSalir = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Inventario A&M");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -192,10 +275,10 @@ public class MCPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Consultas");
+        menuConsulta.setText("Consultas");
 
         itemReporte.setText("Reportes");
-        jMenu1.add(itemReporte);
+        menuConsulta.add(itemReporte);
 
         itemFactura.setText("Detalle de Facturas");
         itemFactura.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +286,7 @@ public class MCPrincipal extends javax.swing.JFrame {
                 itemFacturaActionPerformed(evt);
             }
         });
-        jMenu1.add(itemFactura);
+        menuConsulta.add(itemFactura);
 
         itemRecibo.setText("Detalle de Recibo");
         itemRecibo.addActionListener(new java.awt.event.ActionListener() {
@@ -211,9 +294,9 @@ public class MCPrincipal extends javax.swing.JFrame {
                 itemReciboActionPerformed(evt);
             }
         });
-        jMenu1.add(itemRecibo);
+        menuConsulta.add(itemRecibo);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(menuConsulta);
 
         MenuBD.setText("Base de Datos");
 
@@ -227,7 +310,7 @@ public class MCPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuBD);
 
-        MenuHeramientas.setText("Herramientas");
+        menuHerramienta.setText("Herramientas");
 
         ItemUsuario.setText("Usuarios");
         ItemUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -235,10 +318,10 @@ public class MCPrincipal extends javax.swing.JFrame {
                 ItemUsuarioActionPerformed(evt);
             }
         });
-        MenuHeramientas.add(ItemUsuario);
+        menuHerramienta.add(ItemUsuario);
 
         ItemIformacion.setText("Informacion");
-        MenuHeramientas.add(ItemIformacion);
+        menuHerramienta.add(ItemIformacion);
 
         itemLinea.setText("Lineas");
         itemLinea.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +329,7 @@ public class MCPrincipal extends javax.swing.JFrame {
                 itemLineaActionPerformed(evt);
             }
         });
-        MenuHeramientas.add(itemLinea);
+        menuHerramienta.add(itemLinea);
 
         itemProveedor.setText("Proveedor");
         itemProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -254,21 +337,21 @@ public class MCPrincipal extends javax.swing.JFrame {
                 itemProveedorActionPerformed(evt);
             }
         });
-        MenuHeramientas.add(itemProveedor);
+        menuHerramienta.add(itemProveedor);
 
-        jMenuBar1.add(MenuHeramientas);
+        jMenuBar1.add(menuHerramienta);
 
-        itemSesion.setText("Usuario");
+        menuSesion.setText("Usuario");
 
-        jMenuItem1.setText("Salir");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemSalir.setText("Salir");
+        itemSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemSalirActionPerformed(evt);
             }
         });
-        itemSesion.add(jMenuItem1);
+        menuSesion.add(itemSalir);
 
-        jMenuBar1.add(itemSesion);
+        jMenuBar1.add(menuSesion);
 
         setJMenuBar(jMenuBar1);
 
@@ -296,7 +379,7 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void itemFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemFacturaActionPerformed
         // TODO add your handling code here:
-        
+
         frmdtsFactura fdf = new frmdtsFactura();
         dpnEscritorio.add(fdf);
         fdf.show();
@@ -304,7 +387,7 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void ItemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemUsuarioActionPerformed
         // TODO add your handling code here:
-        
+
         frmUsuario us = new frmUsuario();
         dpnEscritorio.add(us);
         us.show();
@@ -333,7 +416,7 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void btnAlamcenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlamcenActionPerformed
         // TODO add your handling code here:
-        
+
         frmInventario fiv = new frmInventario();
         dpnEscritorio.add(fiv);
         fiv.show();
@@ -341,7 +424,7 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void btnRecibosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecibosActionPerformed
         // TODO add your handling code here:
-        
+
         frmRecibos fiv = new frmRecibos();
         dpnEscritorio.add(fiv);
         fiv.setDatosUs(lbUsuario.getText());
@@ -350,28 +433,27 @@ public class MCPrincipal extends javax.swing.JFrame {
 
     private void itemReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemReciboActionPerformed
         // TODO add your handling code here:
-        
+
         frmDetaRecibo fr = new frmDetaRecibo();
         dpnEscritorio.add(fr);
         fr.show();
     }//GEN-LAST:event_itemReciboActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
         // TODO add your handling code here:
-        
-         
-        frmLogin  lg=new frmLogin();
-        this.dispose();    
+
+        frmLogin lg = new frmLogin();
+        this.dispose();
         lg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemSalirActionPerformed
 
     private void ItemRespaldarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemRespaldarActionPerformed
         // TODO add your handling code here:
-        
+
         frmRespaldarRestaura fr = new frmRespaldarRestaura();
         dpnEscritorio.add(fr);
         fr.show();
-        
+
     }//GEN-LAST:event_ItemRespaldarActionPerformed
 
     /**
@@ -414,7 +496,6 @@ public class MCPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem ItemRespaldar;
     private javax.swing.JMenuItem ItemUsuario;
     private javax.swing.JMenu MenuBD;
-    private javax.swing.JMenu MenuHeramientas;
     private javax.swing.JButton btnAlamcen;
     private javax.swing.JButton btnFactura;
     private javax.swing.JButton btnRecibos;
@@ -424,19 +505,18 @@ public class MCPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemProveedor;
     private javax.swing.JMenuItem itemRecibo;
     private javax.swing.JMenuItem itemReporte;
-    private javax.swing.JMenu itemSesion;
+    private javax.swing.JMenuItem itemSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbUsuario;
     private javax.swing.JLabel lbfecha;
     private javax.swing.JLabel lbhora;
+    private javax.swing.JMenu menuConsulta;
+    private javax.swing.JMenu menuHerramienta;
+    private javax.swing.JMenu menuSesion;
     // End of variables declaration//GEN-END:variables
 
-  
-     
 }

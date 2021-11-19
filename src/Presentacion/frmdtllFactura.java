@@ -7,10 +7,13 @@ package Presentacion;
 
 import Datos.DDFacturas;
 import Logica.LDFactura;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -42,8 +45,15 @@ public class frmdtllFactura extends javax.swing.JDialog {
 //        setDatos("", "", "", "");
         habitilar(false);
         sumarTotal();
+        imagenesBtn();
     }
 
+      public void imagenesBtn(){
+          ImageIcon mirf = new ImageIcon("src/Imagen/reporte-de-factura.png");
+        Icon iconorf = new ImageIcon(mirf.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        btnExportar.setIcon(iconorf);
+    }
+      
     public void setDatos(String id, String Proveedor, String Linea, String Fecha) {
 
         txtid.setText(id);

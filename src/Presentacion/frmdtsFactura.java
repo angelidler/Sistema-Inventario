@@ -7,9 +7,12 @@ package Presentacion;
 
 import Datos.DFactura;
 import Logica.LFactura;
+import java.awt.Image;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -36,6 +39,7 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
     public frmdtsFactura() {
         initComponents();
         MostrarDFacura();
+        imagenesBtn();
 
     }
 
@@ -58,6 +62,11 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
         tblDtfactura.setModel(miModelo);
 
     }
+    public void imagenesBtn(){
+          ImageIcon mirf = new ImageIcon("src/Imagen/reporte-de-factura.png");
+        Icon iconorf = new ImageIcon(mirf.getImage().getScaledInstance(25, 30, Image.SCALE_DEFAULT));
+        btnReporte.setIcon(iconorf);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +81,7 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDtfactura = new javax.swing.JTable();
-        txtReporte = new javax.swing.JButton();
+        btnReporte = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -99,10 +108,10 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblDtfactura);
 
-        txtReporte.setText("Reporte de Factura");
-        txtReporte.addActionListener(new java.awt.event.ActionListener() {
+        btnReporte.setText("Reporte de Factura");
+        btnReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtReporteActionPerformed(evt);
+                btnReporteActionPerformed(evt);
             }
         });
 
@@ -115,7 +124,7 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtReporte))
+                    .addComponent(btnReporte))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -126,7 +135,7 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtReporte)
+                .addComponent(btnReporte)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -190,7 +199,7 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tblDtfacturaMousePressed
 
-    private void txtReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReporteActionPerformed
+    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         // TODO add your handling code here:
 
         JFileChooser seleccionar = new JFileChooser();
@@ -275,14 +284,14 @@ public class frmdtsFactura extends javax.swing.JInternalFrame {
         }
 
 
-    }//GEN-LAST:event_txtReporteActionPerformed
+    }//GEN-LAST:event_btnReporteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReporte;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDtfactura;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JButton txtReporte;
     // End of variables declaration//GEN-END:variables
 }
